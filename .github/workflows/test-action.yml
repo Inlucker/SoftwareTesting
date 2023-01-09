@@ -46,14 +46,19 @@ jobs:
           make
         working-directory: LandscapeGenLib
         
-        
       - name: build LandscapeGenUnitTests
         run: |
           qmake
           make
         working-directory: LandscapeGenUnitTests
         
-      - name: run Tests
+      - name: build LandscapeGenIntegrationTests
+        run: |
+          qmake
+          make
+        working-directory: LandscapeGenIntegrationTests
+        
+      - name: run UnitTests
         run: |
             cd ./BaseControllerTest
             ./BaseControllerTest
@@ -68,4 +73,14 @@ jobs:
             cd .././UsersRepositoryTest
             ./UsersRepositoryTest
         working-directory: LandscapeGenUnitTests
+        
+      - name: run IntegrationTests
+        run: |
+            cd ./BaseControllerTest
+            ./BaseControllerTest
+            cd .././ModeratorCanvasesTest
+            ./ModeratorCanvasesTest
+            cd .././ModeratorControllerTest
+            ./ModeratorControllerTest
+        working-directory: LandscapeGenIntegrationTests
         

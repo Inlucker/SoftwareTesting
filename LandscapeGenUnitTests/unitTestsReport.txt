@@ -1,0 +1,72 @@
+********* Start testing of BaseControllerTest *********
+Config: Using QtTest library 5.15.1, Qt 5.15.1 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2019)
+PASS   : BaseControllerTest::initTestCase()
+PASS   : BaseControllerTest::noParamsConstrcutorTest()
+PASS   : BaseControllerTest::userBLConstrcutorTest()
+PASS   : BaseControllerTest::loginTest()
+PASS   : BaseControllerTest::logoutTest()
+PASS   : BaseControllerTest::getUserTest()
+PASS   : BaseControllerTest::cleanupTestCase()
+Totals: 7 passed, 0 failed, 0 skipped, 0 blacklisted, 2ms
+********* Finished testing of BaseControllerTest *********
+ 
+ 
+********* Start testing of ModeratorCanvasesControllerTest *********
+Config: Using QtTest library 5.15.1, Qt 5.15.1 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2019)
+PASS   : ModeratorCanvasesControllerTest::initTestCase()
+PASS   : ModeratorCanvasesControllerTest::noParamsConstructorTest()
+PASS   : ModeratorCanvasesControllerTest::selectCanvasTest()
+PASS   : ModeratorCanvasesControllerTest::getFrameBufferTest()
+PASS   : ModeratorCanvasesControllerTest::cleanCanvasTest()
+PASS   : ModeratorCanvasesControllerTest::transformTest()
+PASS   : ModeratorCanvasesControllerTest::moveTest()
+PASS   : ModeratorCanvasesControllerTest::scaleTest()
+PASS   : ModeratorCanvasesControllerTest::rotateTest()
+PASS   : ModeratorCanvasesControllerTest::getColorTest()
+PASS   : ModeratorCanvasesControllerTest::getLandscapeCanvasTest()
+PASS   : ModeratorCanvasesControllerTest::getHeightsMapTest()
+PASS   : ModeratorCanvasesControllerTest::getHeightsMapPointsTest()
+PASS   : ModeratorCanvasesControllerTest::getTriPolArrayTest()
+PASS   : ModeratorCanvasesControllerTest::getZBufferAlgTest()
+PASS   : ModeratorCanvasesControllerTest::getMultTest()
+PASS   : ModeratorCanvasesControllerTest::getImgWidthTest()
+PASS   : ModeratorCanvasesControllerTest::getImgHeightTest()
+PASS   : ModeratorCanvasesControllerTest::cleanupTestCase()
+Totals: 19 passed, 0 failed, 0 skipped, 0 blacklisted, 3232ms
+********* Finished testing of ModeratorCanvasesControllerTest *********
+ 
+ 
+********* Start testing of UserControllerTest *********
+Config: Using QtTest library 5.15.1, Qt 5.15.1 (x86_64-little_endian-llp64 shared (dynamic) release build; by MSVC 2019)
+PASS   : UserControllerTest::initTestCase()
+PASS   : UserControllerTest::selectCanvasTest()
+PASS   : UserControllerTest::generateNewLandscapeTest()
+PASS   : UserControllerTest::readFromFileTest()
+PASS   : UserControllerTest::writeToFileTest()
+PASS   : UserControllerTest::getFrameBufferTest()
+PASS   : UserControllerTest::cleanCanvasTest()
+PASS   : UserControllerTest::resetHeightsMapTest()
+PASS   : UserControllerTest::updateResolutionTest()
+PASS   : UserControllerTest::setWidthTest()
+PASS   : UserControllerTest::setHeightTest()
+PASS   : UserControllerTest::setSmoothingTest()
+PASS   : UserControllerTest::setMultTest()
+PASS   : UserControllerTest::setLandscapeColorTest()
+PASS   : UserControllerTest::transformTest()
+PASS   : UserControllerTest::moveTest()
+PASS   : UserControllerTest::scaleTest()
+PASS   : UserControllerTest::rotateTest()
+PASS   : UserControllerTest::getColorTest()
+PASS   : UserControllerTest::getLandscapeCanvasTest()
+PASS   : UserControllerTest::getHeightsMapTest()
+PASS   : UserControllerTest::getHeightsMapPointsTest()
+PASS   : UserControllerTest::getTriPolArrayTest()
+PASS   : UserControllerTest::getZBufferAlgTest()
+PASS   : UserControllerTest::getMultTest()
+PASS   : UserControllerTest::getImgWidthTest()
+PASS   : UserControllerTest::getImgHeightTest()
+PASS   : UserControllerTest::cleanupTestCase()
+Totals: 28 passed, 0 failed, 0 skipped, 0 blacklisted, 3580ms
+********* Finished testing of UserControllerTest *********
+ 
+ 

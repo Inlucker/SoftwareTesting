@@ -64,6 +64,13 @@ jobs:
           make
         working-directory: LandscapeE2ETest
         
+      - name: create tables, roles and triggers
+        run: | 
+            psql "sslmode=disable user=postgres hostaddr=127.0.0.1 port=5432 password=postgres dbname=postgres" < PPO.sql
+            psql "sslmode=disable user=postgres hostaddr=127.0.0.1 port=5432 password=postgres dbname=postgres" < PPO_roles.sql
+            psql "sslmode=disable user=postgres hostaddr=127.0.0.1 port=5432 password=postgres dbname=postgres" < PPO_triggers.sql
+        working-directory: sql_scripts
+        
       - name: run UnitTests
         run: |
             cd ./BaseControllerTest

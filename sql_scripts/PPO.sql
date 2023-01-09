@@ -1,4 +1,4 @@
-drop schema PPO cascade;
+--drop schema PPO cascade;
 create schema PPO;
 
 --drop table PPO.Users cascade;

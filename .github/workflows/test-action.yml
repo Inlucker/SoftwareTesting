@@ -58,6 +58,12 @@ jobs:
           make
         working-directory: LandscapeGenIntegrationTests
         
+      - name: build LandscapeE2ETest
+        run: |
+          qmake
+          make
+        working-directory: LandscapeE2ETest
+        
       - name: run UnitTests
         run: |
             cd ./BaseControllerTest
@@ -85,4 +91,9 @@ jobs:
             cd .././UserControllerTest
             ./UserControllerTest
         working-directory: LandscapeGenIntegrationTests
+        
+      - name: run E2ETest
+        run: |
+            ./LandscapeE2ETest
+        working-directory: LandscapeE2ETest
         

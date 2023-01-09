@@ -5,6 +5,6 @@ docker run --name pgDB //имя контейнера
 		   -p 5432:5432
 		   -d postgres
 		   
-docker run --name pgDB14 -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+sudo docker run --name pgDB14 -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 		   
 psql -h localhost -U postgres --password -p 5432

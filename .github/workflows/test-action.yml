@@ -52,7 +52,7 @@ jobs:
           qmake
           make
         working-directory: LandscapeGenUnitTests
-      
+        
       - name: run Tests
         run: |
             cd ./BaseControllerTest
@@ -68,3 +68,4 @@ jobs:
             cd .././UsersRepositoryTest
             ./UsersRepositoryTest
         working-directory: LandscapeGenUnitTests
+        

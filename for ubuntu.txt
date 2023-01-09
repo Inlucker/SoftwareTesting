@@ -1,0 +1,3 @@
+sudo mount -t vboxsf SoftwareTesting shared
+sudo docker run --name pgDB14 -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+sudo docker start pgDB14

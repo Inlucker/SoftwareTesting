@@ -94,6 +94,7 @@ logFile.txt
 moc_*
 msvc_make.bat
 target_wrapper.bat
+target_wrapper.sh
 *.lib
 BaseControllerTest
 CanvasRepositoryTest

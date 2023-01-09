@@ -82,5 +82,7 @@ jobs:
             ./ModeratorCanvasesTest
             cd .././ModeratorControllerTest
             ./ModeratorControllerTest
+            cd .././UserControllerTest
+            ./UserControllerTest
         working-directory: LandscapeGenIntegrationTests
         

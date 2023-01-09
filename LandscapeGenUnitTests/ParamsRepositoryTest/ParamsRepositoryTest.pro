@@ -6,7 +6,19 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  tst_paramsrepositorytest.cpp
+SOURCES +=  tst_paramsrepositorytest.cpp \
+    ../../common/CanvasBLBuilder.cpp \
+    ../../common/CanvasMother.cpp \
+    ../../common/DataBaseBuilder.cpp \
+    ../../common/HeightsMapBuilder.cpp
+
+HEADERS += ../../common/DataBaseBuilder.h \
+    ../../common/CanvasBLBuilder.h \
+    ../../common/CanvasMother.h \
+    ../../common/HeightsMapBuilder.h \
+    ../../common/common.h
+
+INCLUDEPATH += $$PWD/../../common
 
 #LandscapeGenLib
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../LandscapeGenLib/release/ -lLandscapeGenLib

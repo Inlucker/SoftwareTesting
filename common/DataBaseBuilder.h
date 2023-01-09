@@ -44,6 +44,11 @@ public:
     static Status getFreeUsers(vector<UserBL> &users, string schema = m_schema);
     static Status getUsersByMid(vector<UserBL> &users, int moderator_id, string schema = m_schema);
 
+    //Params
+    static Status createParamsTable(string schema = m_schema);
+    static Status fillParamsTable(int n = 5, string schema = m_schema);
+    static Status dropParamsTable(string schema = m_schema);
+
     static QSqlQuery getQSqlQuery();
     static string lastError();
 

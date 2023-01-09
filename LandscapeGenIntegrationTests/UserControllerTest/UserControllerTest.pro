@@ -6,7 +6,7 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES +=  tst_moderatorcanvasestest.cpp \
+SOURCES +=  tst_usercontrollertest.cpp \
     ../../common/CanvasBLBuilder.cpp \
     ../../common/CanvasMother.cpp \
     ../../common/DataBaseBuilder.cpp \
@@ -49,3 +49,4 @@ INCLUDEPATH += '/usr/include/postgresql'
 DEPENDPATH += '/usr/include/postgresql'
 
 unix:!macx: PRE_TARGETDEPS += '/usr/include/postgresql/libpq'
+

@@ -104,7 +104,7 @@ Status DataBaseBuilder::fillCanvasTable(int n, string schema)
 
         query += "insert into " + schema + ".Canvas(user_id, name, HeightsMap, TriPolArray, Color) values(";
         query += u_id + ", '";
-        query += name + "', '";
+        query += name + to_string(i) + "', '";
         query += hm_str + "', '";
         query += hmp + "', '";
         query += c + "');\n";
@@ -257,6 +257,43 @@ Status DataBaseBuilder::getUsersByMid(vector<UserBL> &users, int moderator_id, s
         return EMPTY_RES;
     }
     return OK;
+}
+
+Status DataBaseBuilder::createParamsTable(string schema)
+{
+    string query = "create table if not exists " + m_schema + ".Params\
+                    (\
+                        canvas_id int unique,\
+                        FOREIGN KEY (canvas_id) REFERENCES " + m_schema + ".Canvas (id),\
+                        width int,\
+                        height int,\
+                        range float,\
+                        smooth bool,\
+                        mult int,\
+                        red int,\
+                        green int,\
+                        blue int,\
+                        size int\
+                    );";
+
+    return execQuery(query);
+}
+
+Status DataBaseBuilder::fillParamsTable(int n, string schema)
+{
+    string query = "insert into " + m_schema + ".Params values (1, 960, 540, 24.75, true, 1, 120, 31, 150, 33);\
+                    insert into " + m_schema + ".Params values (2, 768, 432, 24.75, false, 4, 120, 31, 150, 33);\
+                    insert into " + m_schema + ".Params values (3, 960, 540, 24.75, true, 1, 120, 31, 150, 33);\
+                    insert into " + m_schema + ".Params values (4, 960, 540, 24.75, true, 1, 120, 31, 150, 33);";
+
+    return execQuery(query);
+}
+
+Status DataBaseBuilder::dropParamsTable(string schema)
+{
+    string query = "drop table " + m_schema + ".Params cascade;";
+
+    return execQuery(query);
 }
 
 QSqlQuery DataBaseBuilder::getQSqlQuery()

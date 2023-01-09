@@ -9,6 +9,7 @@
 #include "Errors/RepositoryErrors.h"
 #include "HeightsMap/HeightsMap.h"
 #include "Essensities/CanvasBL.h"
+#include "common.h"
 
 class ParamsRepositoryTest : public QObject
 {
@@ -52,11 +53,7 @@ ParamsRepositoryTest::ParamsRepositoryTest()
     QString m_dbpass = Settings::get(Settings::DBPass, Settings::DataBase).toString();
 
 
-    db->setHostName(m_dbhost);
-    db->setPort(m_dbport);
-    db->setDatabaseName(m_dbname);
-    db->setUserName(m_dbuser);
-    db->setPassword(m_dbpass);
+    db = DataBaseBuilder::createPostgresDataBase(m_dbhost, m_dbport, m_dbname, m_dbuser, m_dbpass, m_schema);
 
     if (!db->open())
         qDebug() << db->lastError().text();
@@ -72,81 +69,19 @@ ParamsRepositoryTest::~ParamsRepositoryTest()
 
 void ParamsRepositoryTest::initTestCase()
 {
-    string query = "create schema " + m_schema + ";";
-    QSqlQuery q;
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
+    if (DataBaseBuilder::createSchema() != OK)
+        QFAIL(DataBaseBuilder::lastError().c_str());
 
-    query = "create table if not exists "+ m_schema + ".Canvas\
-            (\
-                id serial primary key,\
-                user_id int,\
-                name text,\
-                HeightsMap text,\
-                TriPolArray text,\
-                Color text\
-            );";
+    DataBaseBuilder::createCanvasTable();
 
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
-
-    for (int i = 0; i < 5; i++)
-    {
-        int size = 33;
-        HeightsMap hm = HeightsMap(size);
-        hm.diamondSquare();
-        CanvasBL canvas = CanvasBL(1, 1, "CanvasName" + std::to_string(i), hm, *hm.createPoints(), 20, 150, 20);
-        string u_id = std::to_string(canvas.getUserId());
-        string name = canvas.getName();
-        string tmp;
-        canvas.getHeightsMap().toStr(tmp);
-        string hm_str = tmp;
-        canvas.getHeightsMapPoints().toStr(tmp);
-        string hmp = tmp;
-        int r, g, b;
-        canvas.getColor(r, g, b);
-        string c = to_string(r) + " " + to_string(g) + " " + to_string(b);
-
-        query = "insert into " + m_schema + ".Canvas(user_id, name, HeightsMap, TriPolArray, Color) values(";
-        query += u_id + ", '";
-        query += name + "', '";
-        query += hm_str + "', '";
-        query += hmp + "', '";
-        query += c + "');";
-
-        if (!q.exec(QString::fromStdString(query)))
-            QFAIL(q.lastError().text().toStdString().c_str());
-    }
+    DataBaseBuilder::fillCanvasTable();
 }
 
 void ParamsRepositoryTest::init()
 {
-    string query = "create table if not exists " + m_schema + ".Params\
-                    (\
-                        canvas_id int unique,\
-                        FOREIGN KEY (canvas_id) REFERENCES " + m_schema + ".Canvas (id),\
-                        width int,\
-                        height int,\
-                        range float,\
-                        smooth bool,\
-                        mult int,\
-                        red int,\
-                        green int,\
-                        blue int,\
-                        size int\
-                    );";
+    DataBaseBuilder::createParamsTable();
 
-    QSqlQuery q;
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
-
-    query = "insert into " + m_schema + ".Params values (1, 960, 540, 24.75, true, 1, 120, 31, 150, 33);\
-            insert into " + m_schema + ".Params values (2, 768, 432, 24.75, false, 4, 120, 31, 150, 33);\
-            insert into " + m_schema + ".Params values (3, 960, 540, 24.75, true, 1, 120, 31, 150, 33);\
-            insert into " + m_schema + ".Params values (4, 960, 540, 24.75, true, 1, 120, 31, 150, 33);";
-
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
+    DataBaseBuilder::fillParamsTable();
 }
 
 void ParamsRepositoryTest::getParamsTest()
@@ -321,22 +256,16 @@ void ParamsRepositoryTest::updateParamsTest()
 
 void ParamsRepositoryTest::cleanup()
 {
-    string query = "drop table " + m_schema + ".Params cascade;";
-    QSqlQuery q;
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
+    DataBaseBuilder::dropParamsTable();
 }
 
 void ParamsRepositoryTest::cleanupTestCase()
 {
-    string query = "drop table " + m_schema + ".Canvas cascade;";
-    QSqlQuery q;
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
+    if (DataBaseBuilder::dropCanvasTable() != OK)
+        QFAIL(DataBaseBuilder::lastError().c_str());
 
-    query = "drop schema " + m_schema + " cascade;";
-    if (!q.exec(QString::fromStdString(query)))
-        QFAIL(q.lastError().text().toStdString().c_str());
+    if (DataBaseBuilder::dropSchemaCascade() != OK)
+        QFAIL(DataBaseBuilder::lastError().c_str());
 }
 
 QTEST_GUILESS_MAIN(ParamsRepositoryTest)

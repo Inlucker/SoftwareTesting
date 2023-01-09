@@ -1,6 +1,6 @@
 #include <QtTest>
 
-#define FILENAME "../default.cfg"
+#define FILENAME "ModeratorControllerTest.cfg"
 
 #include "Settings.h"
 #include "Controllers/ModeratorController.h"
@@ -110,6 +110,7 @@ void ModeratorControllerTest::deleteUserTest()
 
 void ModeratorControllerTest::cleanup()
 {
+    moderator_controller = make_unique<ModeratorController>();
     if (DataBaseBuilder::dropUsersTable() != OK)
         QFAIL(DataBaseBuilder::lastError().c_str());
 }

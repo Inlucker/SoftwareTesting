@@ -96,10 +96,10 @@ msvc_make.bat
 target_wrapper.bat
 target_wrapper.sh
 *.lib
-BaseControllerTest
+#BaseControllerTest
 CanvasRepositoryTest
 ModeratorCanvasesControllerTest
 ParamsRepositoryTest
-UserControllerTest
+#UserControllerTest
 UsersRepositoryTest
 LandcapeGenVer1

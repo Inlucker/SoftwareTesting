@@ -1,6 +1,6 @@
 #include <QtTest>
 
-#define FILENAME "../default.cfg"
+#define FILENAME "BaseControllerTest.cfg"
 
 #include "Settings.h"
 #include "Controllers/BaseController.h"
@@ -99,6 +99,7 @@ void BaseControllerTest::logoutTest()
 
 void BaseControllerTest::cleanup()
 {
+    base_controller = make_unique<BaseController>();
     if (DataBaseBuilder::dropUsersTable() != OK)
         QFAIL(DataBaseBuilder::lastError().c_str());
 }

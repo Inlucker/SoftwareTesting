@@ -1,6 +1,6 @@
 #include <QtTest>
 
-#define FILENAME "../default.cfg"
+#define FILENAME "ModeratorCanvasesTest.cfg"
 
 #include "Settings.h"
 #include "Controllers/ModeratorCanvasesController.h"
@@ -107,6 +107,7 @@ void ModeratorCanvasesTest::selectCanvasTest()
 
 void ModeratorCanvasesTest::cleanup()
 {
+    moderator_canvases_controller = make_unique<ModeratorCanvasesController>();
     if (DataBaseBuilder::dropCanvasTable() != OK)
         QFAIL(DataBaseBuilder::lastError().c_str());
     if (DataBaseBuilder::dropUsersTable() != OK)

@@ -4,4 +4,5 @@ SUBDIRS += \
     ../LandscapeGenLib \
     BaseControllerTest \
     ModeratorCanvasesTest \
-    ModeratorControllerTest
+    ModeratorControllerTest \
+    UserControllerTest

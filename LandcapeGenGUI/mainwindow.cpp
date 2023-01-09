@@ -375,7 +375,7 @@ void MainWindow::on_resolution_comboBox_currentTextChanged(const QString &arg1)
     try
     {
         qInfo(logUserAction()) << "Changed resolution comboBox value";
-        qsizetype n = arg1.indexOf('x');
+        int n = arg1.indexOf('x');
 
         QString width = "";
         for (int i = 0; i < n; i++)

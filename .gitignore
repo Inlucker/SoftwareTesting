@@ -1,3 +1,12 @@
+*.user
+build
+Makefile
+app/app
+*.o
+*.gcda
+*.gcno
+tests/tests
+
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 
@@ -86,3 +95,10 @@ moc_*
 msvc_make.bat
 target_wrapper.bat
 *.lib
+BaseControllerTest
+CanvasRepositoryTest
+ModeratorCanvasesControllerTest
+ParamsRepositoryTest
+UserControllerTest
+UsersRepositoryTest
+LandcapeGenVer1

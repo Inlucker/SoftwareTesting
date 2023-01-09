@@ -43,7 +43,7 @@ void Settings::setDefaults(const QString &str)
 
     //qDebug() << "TEST";
 
-    auto kvs = str.split(QRegularExpression(";\\W*"), Qt::SkipEmptyParts); //key-values
+    auto kvs = str.split(QRegularExpression(";\\W*"), QString::SkipEmptyParts); //key-values
     for(auto kv : kvs)
     {
         QRegularExpressionMatchIterator i = rxRecord.globalMatch(kv);

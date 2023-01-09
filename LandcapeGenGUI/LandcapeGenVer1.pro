@@ -39,12 +39,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 #libpq
-win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
-else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
-else:unix: LIBS += -L'C:/Program Files/PostgreSQL/13/lib/' -llibpq
+#win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
+#else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
+#else:unix: LIBS += -L'/usr/include/postgresql' -llibpq
 
-INCLUDEPATH += 'C:/Program Files/PostgreSQL/14/include'
-DEPENDPATH += 'C:/Program Files/PostgreSQL/14/include'
+#INCLUDEPATH += '/usr/include/postgresql'
+#DEPENDPATH += '/usr/include/postgresql'
 
 #LandscapeGenLib
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../LandscapeGenLib/release/ -lLandscapeGenLib
@@ -59,3 +59,11 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../Landscap
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../LandscapeGenLib/release/LandscapeGenLib.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../LandscapeGenLib/debug/LandscapeGenLib.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../LandscapeGenLib/libLandscapeGenLib.a
+
+#libpq for ubuntu
+unix:!macx: LIBS += -L'/usr/include/postgresql' -lpq
+
+INCLUDEPATH += '/usr/include/postgresql'
+DEPENDPATH += '/usr/include/postgresql'
+
+unix:!macx: PRE_TARGETDEPS += '/usr/include/postgresql/libpq'

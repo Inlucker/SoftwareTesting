@@ -397,7 +397,6 @@ int main(int argc, char *argv[])
     delete listeners.Release(listeners.default_result_printer());
     listeners.Append(new QtTestPrinter);
 
-    TESTLIB_SELFCOVERAGE_START(ModeratorCanvasesControllerTest)
     ModeratorCanvasesControllerTest tc;
     QTEST_SET_MAIN_SOURCE_PATH
     return QTest::qExec(&tc, argc, argv);

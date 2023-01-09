@@ -1,0 +1,70 @@
+name: CI/CD GitHub Actions
+on: [push]
+jobs:
+  gtest-tests:
+    runs-on: ubuntu-latest
+    
+    # service containers to run with `postgres-job`
+    services:
+      # label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres:latest
+        # service environment variables
+        # `POSTGRES_HOST` is `postgres`
+        env:
+          # required
+          POSTGRES_PASSWORD: postgres
+
+        ports:
+          # maps tcp port 5432 on service container to the host
+          - 5432:5432
+        # set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+      - uses: actions/checkout@v2
+      - run: git submodule init
+      - run: git submodule update
+      - run: pip install --user cpp-coveralls
+      - run: sudo apt-get update -y && sudo apt-get install -y qtbase5-dev qt5-qmake
+      - run: sudo apt-get install -y libqt5sql5
+      - run: sudo apt-get install -y libqt5sql5-psql
+      - run: sudo apt install -y libpq-dev
+      #- run: sudo apt-get install -y libgtest-dev
+      
+      #- name: Create DB
+      #  run: psql "sslmode=disable user=postgres hostaddr=127.0.0.1 port=5432 password=postgres" -c "create database postgres"
+      
+      - name: build LandscapeGenLib
+        run: |
+          qmake
+          make
+        working-directory: LandscapeGenLib
+        
+        
+      - name: build LandscapeGenUnitTests
+        run: |
+          qmake
+          make
+        working-directory: LandscapeGenUnitTests
+      
+      - name: run Tests
+        run: |
+            cd ./BaseControllerTest
+            ./BaseControllerTest
+            cd .././CanvasRepositoryTest
+            ./CanvasRepositoryTest
+            cd .././ModeratorCanvasesControllerTest
+            ./ModeratorCanvasesControllerTest
+            cd .././ParamsRepositoryTest
+            ./ParamsRepositoryTest
+            cd .././UserControllerTest
+            ./UserControllerTest
+            cd .././UsersRepositoryTest
+            ./UsersRepositoryTest
+        working-directory: LandscapeGenUnitTests

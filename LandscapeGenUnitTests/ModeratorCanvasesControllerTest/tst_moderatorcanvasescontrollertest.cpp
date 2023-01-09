@@ -105,6 +105,8 @@ void ModeratorCanvasesControllerTest::noParamsConstructorTest()
 {
     //ARRANGE no need
     shared_ptr<LandscapeCanvas> same_canvas = make_shared<LandscapeCanvas>();
+    shared_ptr<LandscapeCanvas> canvas2 = make_shared<LandscapeCanvas>();
+    canvas2->generateNewLandscape(66);
 
     //ACT
     sut = make_unique<ModeratorCanvasesController>();

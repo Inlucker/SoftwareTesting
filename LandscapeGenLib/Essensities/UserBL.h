@@ -12,8 +12,8 @@ public:
     //UserBL& operator =(UserBL&& vec) noexcept;
     UserBL(int id, string l, string p, string r, int m_id);
 
-    bool operator ==(UserBL& an_ubl) const;
-    bool operator !=(UserBL& an_ubl) const;
+    bool operator ==(const UserBL& an_ubl) const;
+    bool operator !=(const UserBL& an_ubl) const;
 
     int getId();
     const string& getLogin() const;

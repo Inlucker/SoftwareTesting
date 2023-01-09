@@ -106,10 +106,25 @@ unix {
 }
 !isEmpty(target.path): INSTALLS += target
 
-#libpq
-win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -lpq
-else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -lpq
-else:unix: LIBS += -L'/usr/include/postgresql' -lpq
+#libpq for windows
+win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
+else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
+
+INCLUDEPATH += 'C:/Program Files/PostgreSQL/14/include'
+DEPENDPATH += 'C:/Program Files/PostgreSQL/14/include'
+
+#libpq for ubuntu
+unix:!macx: LIBS += -L'/usr/include/postgresql' -lpq
 
 INCLUDEPATH += '/usr/include/postgresql'
 DEPENDPATH += '/usr/include/postgresql'
+
+unix:!macx: PRE_TARGETDEPS += '/usr/include/postgresql/libpq'
+
+#libpq
+#win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -lpq
+#else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -lpq
+#else:unix: LIBS += -L'/usr/include/postgresql' -lpq
+
+#INCLUDEPATH += '/usr/include/postgresql'
+#DEPENDPATH += '/usr/include/postgresql'

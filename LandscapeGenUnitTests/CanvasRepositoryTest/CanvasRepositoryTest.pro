@@ -6,18 +6,18 @@ CONFIG += qt warn_on depend_includepath testcase
 TEMPLATE = app
 
 SOURCES +=  tst_canvasrepositorytest.cpp \
-    ../common/CanvasBLBuilder.cpp \
-    ../common/CanvasMother.cpp \
-    ../common/DataBaseBuilder.cpp \
-    ../common/HeightsMapBuilder.cpp
+    ../../common/CanvasBLBuilder.cpp \
+    ../../common/CanvasMother.cpp \
+    ../../common/DataBaseBuilder.cpp \
+    ../../common/HeightsMapBuilder.cpp
 
-HEADERS += ../common/DataBaseBuilder.h \
-    ../common/CanvasBLBuilder.h \
-    ../common/CanvasMother.h \
-    ../common/HeightsMapBuilder.h \
-    ../common/common.h
+HEADERS += ../../common/DataBaseBuilder.h \
+    ../../common/CanvasBLBuilder.h \
+    ../../common/CanvasMother.h \
+    ../../common/HeightsMapBuilder.h \
+    ../../common/common.h
 
-INCLUDEPATH += $$PWD/../common
+INCLUDEPATH += $$PWD/../../common
 
 #LandscapeGenLib
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../LandscapeGenLib/release/ -lLandscapeGenLib
@@ -33,6 +33,13 @@ else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/..
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../LandscapeGenLib/debug/LandscapeGenLib.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../../LandscapeGenLib/libLandscapeGenLib.a
 
+#libpq for windows
+win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
+else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files/PostgreSQL/14/lib/' -llibpq
+
+INCLUDEPATH += 'C:/Program Files/PostgreSQL/14/include'
+DEPENDPATH += 'C:/Program Files/PostgreSQL/14/include'
+
 #libpq for ubuntu
 unix:!macx: LIBS += -L'/usr/include/postgresql' -lpq
 
@@ -40,3 +47,4 @@ INCLUDEPATH += '/usr/include/postgresql'
 DEPENDPATH += '/usr/include/postgresql'
 
 unix:!macx: PRE_TARGETDEPS += '/usr/include/postgresql/libpq'
+

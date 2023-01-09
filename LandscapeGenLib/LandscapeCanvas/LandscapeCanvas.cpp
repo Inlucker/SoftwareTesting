@@ -71,7 +71,7 @@ LandscapeCanvas::~LandscapeCanvas()
 {
 }
 
-bool LandscapeCanvas::operator ==(LandscapeCanvas &an_canvas) const
+bool LandscapeCanvas::operator ==(const LandscapeCanvas &an_canvas) const
 {
     bool res = false;
     bool f1 = false, f2 = false, f3 = false, f4 = false, f5 = false;
@@ -122,7 +122,7 @@ bool LandscapeCanvas::operator ==(LandscapeCanvas &an_canvas) const
     return res;
 }
 
-bool LandscapeCanvas::operator !=(LandscapeCanvas &an_canvas) const
+bool LandscapeCanvas::operator !=(const LandscapeCanvas &an_canvas) const
 {
     return !(*this == an_canvas);
 }

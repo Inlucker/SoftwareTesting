@@ -67,8 +67,8 @@ public:
     explicit LandscapeCanvas(HeightsMap &hm);
     LandscapeCanvas(HeightsMap &hm, HeightsMapPoints &hmp, int r, int g, int b);
     virtual ~LandscapeCanvas();
-    bool operator ==(LandscapeCanvas& an_canvas) const;
-    bool operator !=(LandscapeCanvas& an_canvas) const;
+    bool operator ==(const LandscapeCanvas& an_canvas) const;
+    bool operator !=(const LandscapeCanvas& an_canvas) const;
 
     void generateNewLandscape(int size);
     void readFromFile(string file_name);

@@ -24,7 +24,7 @@ INCLUDEPATH += $$PWD/../common
 #LandscapeGenLib
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../LandscapeGenLib/release/ -lLandscapeGenLib
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../LandscapeGenLib/debug/ -lLandscapeGenLib
-else:unix: LIBS += -L$$PWD/../../LandscapeGenLib/ -lLandscapeGenLib
+else:unix: LIBS += -L$$PWD/../LandscapeGenLib/ -lLandscapeGenLib
 
 INCLUDEPATH += $$PWD/../LandscapeGenLib
 DEPENDPATH += $$PWD/../LandscapeGenLib
